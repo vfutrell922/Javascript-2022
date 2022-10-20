@@ -2,7 +2,7 @@ import {MSDDElement} from "./MSDDElement.js";
 
 class MultiSelectDropDown extends HTMLElement
 {
-    selectedValuesList
+    selectedValuesList;
     searchBar;
     elementContainer;
 
