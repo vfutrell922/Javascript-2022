@@ -10,7 +10,10 @@ class MultiSelectDropDown extends HTMLElement
     {
         super(); 
         values = ["dog", "cat", "bird"]; //TODO: DELETE ME!!!
-        this.selectedValuesList = new Array(); 
+        this.selectedValuesList = new Array();
+        this.id = 'DropDown'
+        this.classList = ('drop-down');
+
         this.searchBar = document.createElement("input");
         this.elementContainer = document.createElement("div");
 

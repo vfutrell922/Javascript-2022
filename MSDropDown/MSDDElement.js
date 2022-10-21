@@ -1,40 +1,38 @@
 class MSDDElement extends HTMLElement
 {
-    #value = "";
-    #selected = false;
+    value = "";
+    selected = false;
     #title;
     #checkBox;
-    #titleCheckBoxContainer;
 
     constructor(value)
     {
         super();
-        this.#value = value;
-        this.#titleCheckBoxContainer = document.createElement('div');
+        this.classList = ('drop-down-element');
+        this.value = value;
         this.#title = document.createElement('p');
         this.#title.innerHTML = value;
         this.#checkBox = document.createElement('input');
         this.#checkBox.type = 'checkbox'
+        this.#checkBox.onclick = this.toggleSelected;
         
-
-        this.#titleCheckBoxContainer.appendChild(this.#title);
-        this.#titleCheckBoxContainer.appendChild(this.#checkBox);
-        this.appendChild(this.#titleCheckBoxContainer);
+        this.appendChild(this.#checkBox);
+        this.appendChild(this.#title);
     }
 
     toggleSelected()
     {
-        this.#selected = !this.#selected;
+        this.selected = !this.selected;
     }
 
     isSelected()
     {
-        return this.#selected;
+        return this.selected;
     }
 
     getValue()
     {
-        return this.#value;
+        return this.value;
     }
 }
 

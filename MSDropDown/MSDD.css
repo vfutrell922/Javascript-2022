@@ -1,0 +1,15 @@
+.drop-down
+{
+    display: block;
+    width: 20%;
+    border-style: solid;
+    border-width: 2px;
+    padding-left: 1%;
+    padding-top: 1%;
+}
+
+.drop-down-element
+{
+    width: 15%;
+    display: flex;
+}
