@@ -10,12 +10,12 @@ class MSDDElement extends HTMLElement
     #selected;      // Boolean: Has the user checked the box of this element
     #title;         // HTML Element: <p> which displays #value to the user
     #checkBox;      // HTML Element: <input>
-    #display;       // Boolean: Whether or not to display this element on the DOM.
+    #display;       // Boolean: Is the element currently displayed on the DOM.
     
     constructor(val)
     {
         super();
-        this.classList = ('drop-down-element displayed');
+        this.classList = ('drop-down-element hidden');
         this.#display = false;
         this.#value = val;
         this.#selected = false;
@@ -31,6 +31,10 @@ class MSDDElement extends HTMLElement
         this.appendChild(this.#title);
     }
 
+    /**
+     * Maintains the selected status of the elements checkbox and dispatches an
+     * event to the parent to update the selected list.
+     */
     #toggleSelected()
     {
         this.#selected = !this.#selected;
@@ -38,6 +42,11 @@ class MSDDElement extends HTMLElement
         this.dispatchEvent(event);
     }
 
+    /**
+     * 
+     * @param {Boolean} display : Is the element to be displayed on the DOM
+     * Switches the display status of the current element.
+     */
     display(display)
     {
         if (display)
@@ -51,6 +60,8 @@ class MSDDElement extends HTMLElement
             this.#display = false;
         }
     }
+
+    /**************Getters and Setters ***********************/
 
     isSelected()
     {
