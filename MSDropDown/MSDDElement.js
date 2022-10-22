@@ -1,14 +1,22 @@
+/**
+ * Author: Vincent Futrell
+ * Date-Last-Modified: 10-21-2022
+ * 
+ * A single, selectable element of the MSDD. 
+ */
 class MSDDElement extends HTMLElement
 {
-    #value;
-    #selected;
-    #title;
-    #checkBox;
+    #value;         // String:  value displayed to the user
+    #selected;      // Boolean: Has the user checked the box of this element
+    #title;         // HTML Element: <p> which displays #value to the user
+    #checkBox;      // HTML Element: <input>
+    #display;       // Boolean: Whether or not to display this element on the DOM.
     
     constructor(val)
     {
         super();
-        this.classList = ('drop-down-element');
+        this.classList = ('drop-down-element displayed');
+        this.#display = false;
         this.#value = val;
         this.#selected = false;
         this.#title = document.createElement('p');
@@ -28,6 +36,21 @@ class MSDDElement extends HTMLElement
         this.#selected = !this.#selected;
         const event = new CustomEvent('toggleSelected', {detail: {value: this.#value}, bubbles: true});
         this.dispatchEvent(event);
+    }
+
+    #toggleDisplay()
+    {
+        let classList = this.classList;
+        if (classList.includes('displayed'))
+        {
+            this.classList.replace('displayed', 'hidden');
+            this.#display = false;
+        }
+        else
+        {
+            this.classList.replace('hidden', 'displayed');
+            this.#display = true;
+        }
     }
 
     isSelected()

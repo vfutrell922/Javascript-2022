@@ -11,5 +11,14 @@
 .drop-down-element
 {
     width: 15%;
+}
+
+.drop-down-element.hidden
+{
+    display: none;
+}
+
+.drop-down-element.displayed
+{
     display: flex;
 }
