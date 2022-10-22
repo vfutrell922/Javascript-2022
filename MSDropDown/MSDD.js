@@ -17,17 +17,22 @@ class MultiSelectDropDown extends HTMLElement
 
     constructor(values)
     {
-        super(); 
+        super();
+
         values = ["dog", "cat", "bird"]; //TODO: TEST DATA, DELETE ME!!!
+
         this.#selectedValuesList = [];
+        this.#searchBar = document.createElement("input");
+        this.#searchBar.onkeyup = () => {
+            this.#searchBarFilter(this);
+        };
+        this.#elementContainer = document.createElement("div");
+
         this.id = 'DropDown'
         this.classList = ('drop-down');
         this.addEventListener('toggleSelected', (e) => {
             this.#updateSelectedList(e);
         });
-
-        this.#searchBar = document.createElement("input");
-        this.#elementContainer = document.createElement("div");
 
         this.appendChild(this.#searchBar);
         this.appendChild(this.#elementContainer);
@@ -66,6 +71,23 @@ class MultiSelectDropDown extends HTMLElement
         else
         {
             this.#selectedValuesList.push(value);
+        }
+    }
+
+    /**
+     * Displays all elements whose value contains the searchPhrase;
+     * hides all elements whose values do not.
+     */
+    #searchBarFilter()
+    {
+        let searchPhrase = this.#searchBar.value;
+        let elements = this.#elementContainer.children;
+        let elementCount = elements.length;
+        for(let i = 0; i < elementCount; i++)
+        {
+            let currentElement = elements[i];
+            if(currentElement.innerHTML.includes(searchPhrase)) currentElement.display(true);
+            else currentElement.display(false);
         }
     }
 

@@ -38,18 +38,17 @@ class MSDDElement extends HTMLElement
         this.dispatchEvent(event);
     }
 
-    #toggleDisplay()
+    display(display)
     {
-        let classList = this.classList;
-        if (classList.includes('displayed'))
-        {
-            this.classList.replace('displayed', 'hidden');
-            this.#display = false;
-        }
-        else
+        if (display)
         {
             this.classList.replace('hidden', 'displayed');
             this.#display = true;
+        }
+        else
+        {
+            this.classList.replace('displayed', 'hidden');
+            this.#display = false;
         }
     }
 
